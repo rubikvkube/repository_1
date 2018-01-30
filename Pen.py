@@ -1,3 +1,5 @@
+import sys
+
 class Pen(object):
     def __init__(self, **kwargs):
         # the amount of ink
@@ -12,8 +14,10 @@ class Pen(object):
             return ''
         size_of_word = len(word) * self.size_letter
         if size_of_word <= self.ink_container_value:
+            self.ink_container_value -= size_of_word
             return word
-        part_of_word = word[0: self.ink_container_value]
+        b=int(self.ink_container_value/self.size_letter)
+        part_of_word = word[0:b]
         self.ink_container_value = 0
         return part_of_word
 
@@ -25,12 +29,3 @@ class Pen(object):
 
     def do_something_else(self):
         print(self.color)
-
-a = Pen()
-f=open('C:\\Users\\Alesia\\Desktop\\New folder (2)\\file.txt', "w")
-f.write(str(a.do_something_else()))
-f.close()
-f=open('C:\\Users\\Alesia\\Desktop\\New folder (2)\\file.txt', "r")
-b=f.read()
-print(b)
-
